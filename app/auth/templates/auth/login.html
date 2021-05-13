@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 {% block title %}Login{% endblock %}
 {% block title_navbar %}Login{% endblock %}
 {%block content %}
@@ -18,6 +18,12 @@
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                                 else.</small>
                         </div>
+                        <div class="form-group">
+                           {{ form.email.label(class="exampleInputEmail2", form="email") }}
+                           {{ form.email(class="form-control", id="email") }}
+                        </div>
+                        
+                        
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
                             <input type="password" class="form-control" id="exampleInputPassword1">
