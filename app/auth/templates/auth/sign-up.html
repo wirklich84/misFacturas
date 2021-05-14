@@ -1,6 +1,6 @@
 {% extends 'base.html' %} 
-{% block title %}Login{% endblock %}
-{% block title_navbar %}Login{% endblock %}
+{% block title %}Registro{% endblock %}
+{% block title_navbar %}Registro{% endblock %}
 {%block content %}
 
 <div class="m-2 p-2">
@@ -8,16 +8,21 @@
      <div class="w-50 mx-auto">
             <div class="card">
                 <div class="card-header">
-                    <center> LOGIN </center>    
+                    <center> REGISTRO </center>    
                 </div>
                 <div class="card-body row justify-content-center align-items-center">
                     <form method="POST" action="/">
                         {{ form.csrf_token }}
+
+                        <div class="form-group">
+                            {{ form.name.label(class="exampleInputEmail2", form="name") }}
+                            {{ form.name(class="form-control", id="name", autocomplete="off") }}
+                         </div>
+
                         <div class="form-group">
                            {{ form.email.label(class="exampleInputEmail2", form="email") }}
                            {{ form.email(class="form-control", id="email", autocomplete="off") }}
-                           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                            else.</small>
+                        
                         </div>
                         
                         
