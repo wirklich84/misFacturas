@@ -11,19 +11,38 @@
                     <center> LOGIN </center>    
                 </div>
                 <div class="card-body row justify-content-center align-items-center">
-                    <form method="POST" action="/">
+                    <form method="POST"  novalidate>
                         {{ form.csrf_token }}
                         <div class="form-group">
                            {{ form.email.label(class="exampleInputEmail2", form="email") }}
-                           {{ form.email(class="form-control", id="email", autocomplete="off") }}
-                           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                            else.</small>
+
+                           {% if form.email.errors %}
+                            {{ form.email(class="form-control is-invalid", id="email", autocomplete="off", size=64) }}
+                            <div class="invalid-feedback">
+                                {% for error in form.email.errors %} 
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+
+                            </div>
+                            {%  else %}
+                                {{ form.email(class="form-control", id="email", autocomplete="off", size=64) }}
+                           {% endif %}
                         </div>
                         
                         
                         <div class="form-group">
                             {{ form.password.label() }}
+                            {% if form.password.errors %}
+                                {{ form.password(class="form-control is-invalid", id="password", autocomplete="off") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.password.errors%}
+                                        {{ error }}
+                                    {% endfor %}                                    
+                                </div>
+                            {% else %}
                             {{ form.password(class="form-control", id="password", autocomplete="off") }}
+                            {% endif %}
+                            
                         </div>
                            {{ form.submit(class="btn btn-primary")}}
                     </form>
