@@ -13,15 +13,13 @@ from flask_login import login_user, login_required, logout_user, current_user
 
 @auth_bp.route('/', methods=['POST', 'GET'])
 def login():
-    form = LoginForm(request.form)
+    form = LoginForm()
     if request.method == 'POST' and form.validate_on_submit():
-        email = form.email.data
-        password = form.password.data
 
-        usuario = User.query.filter_by(email=email).first()
+        usuario = User.query.filter_by(email=form.email.data).first()
 
         if usuario:
-            if check_password_hash(usuario.password, password):
+            if check_password_hash(usuario.password , form.password.data):
                 flash('Usuario logeado satisfactoriamente!!', category='success')
                 login_user(usuario, remember=True)
                 return redirect(url_for('mis_facturas.index'))
@@ -51,7 +49,7 @@ def sign_up():
             nuevo_usuario = User(form.email.data, generate_password_hash(form.password.data,  method='sha256'),form.name.data)
             db.session.add(nuevo_usuario)
             db.session.commit()
-            usuario = User.query.filter_by(email=email).first()
+            usuario = User.query.filter_by(email={form.email.data}).first()
             login_user(usuario, remember=True)
             flash(f'Usuario creado satisfactoriamente!! {form.name.data}', 'success')
             return redirect(url_for('auth.home'))       
