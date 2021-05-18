@@ -1,0 +1,28 @@
+{% extends 'base.html' %} 
+{% block title %}Agregar FIEL{% endblock %}
+{% block title_navbar %}FIEL{% endblock %}
+{%block content %}
+
+<div class="m-2 p-2">
+ <div class="row">
+     <div class="w-50 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <center> Subir archivos de la FIEL </center>    
+                </div>
+                <div class="card-body row justify-content-center align-items-center">
+                    <form method="POST" enctype="multipart/form-data" novalidate>
+                        {{ form.csrf_token }}
+                        <div class="form-group">
+                            {{ form.file_cer.label() }}
+                            {{ form.file_cer }}
+                        </div>                    
+                        {{ form.submit(class="btn btn-primary")}}
+                    </form>
+                </div>
+            </div>
+        </div> 
+  </div>
+</div>
+
+{% endblock %}
