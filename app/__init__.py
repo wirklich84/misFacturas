@@ -2,6 +2,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask.helpers import url_for
 from flask_login import LoginManager
+from flask_uploads import configure_uploads
+from app.descarga_facturas.mis_facturas import cerfile
 
 db = SQLAlchemy()
 
@@ -10,7 +12,8 @@ def create_app():
     app.config['SECRET_KEY'] = 'MisTortillas'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:GrupoVictor1@192.168.2.252/db_misFacturas'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
-    app.config['UPLOAD_FOLDER'] = '/upload'
+    app.config['UPLOADED_CERFILE_DEST'] = 'uploads'
+    configure_uploads(app, cerfile)
 
     db.init_app(app)
 

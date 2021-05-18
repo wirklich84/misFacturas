@@ -7,6 +7,6 @@ from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
 
 class FielForm(Form):
-    file_cer = FileField(label='Archivo .cer', validators=[FileRequired(),
+    file_cer = FileField(label='Subir archivo .cer', validators=[FileRequired(),
         FileAllowed(['cer'], 'Solo archivos .cer')])
     submit = SubmitField(label='Subir Archivos')

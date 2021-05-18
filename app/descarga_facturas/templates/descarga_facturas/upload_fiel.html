@@ -3,6 +3,20 @@
 {% block title_navbar %}FIEL{% endblock %}
 {%block content %}
 
+<style>
+    .custom-file-input.selected:lang(en)::after {
+      content: "" !important;
+    }
+
+    .custom-file {
+      overflow: hidden;
+    }
+
+    .custom-file-input {
+      white-space: nowrap;
+    }
+  </style>
+
 <div class="m-2 p-2">
  <div class="row">
      <div class="w-50 mx-auto">
@@ -13,10 +27,12 @@
                 <div class="card-body row justify-content-center align-items-center">
                     <form method="POST" enctype="multipart/form-data" novalidate>
                         {{ form.csrf_token }}
-                        <div class="form-group">
-                            {{ form.file_cer.label() }}
-                            {{ form.file_cer }}
-                        </div>                    
+                        
+                                {{ form.file_cer.label() }}
+                                {{ form.file_cer(class="custom-file-input") }}   </br>
+                                {{ form.file_cer() }}   </br>
+                                {{ form.file_cer() }}   </br>                
+                        
                         {{ form.submit(class="btn btn-primary")}}
                     </form>
                 </div>
@@ -24,5 +40,11 @@
         </div> 
   </div>
 </div>
-
+<script>
+    document.querySelector('.custom-file-input').addEventListener('change', function (e) {
+      var name = document.getElementById("customFileInput").files[0].name;
+      var nextSibling = e.target.nextElementSibling
+      nextSibling.innerText = name
+    })
+  </script>
 {% endblock %}

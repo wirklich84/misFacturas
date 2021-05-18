@@ -19,11 +19,7 @@ def login():
         usuario = User.query.filter_by(email=form.email.data).first()
 
         if usuario:
-<<<<<<< HEAD
             if check_password_hash(usuario.password , form.password.data):
-=======
-            if check_password_hash(usuario.password, form.password.data):
->>>>>>> e0f9c0a10b1193c36d7a83d98fe2d4ee05d02f43
                 flash('Usuario logeado satisfactoriamente!!', category='success')
                 login_user(usuario, remember=True)
                 return redirect(url_for('mis_facturas.index'))
@@ -53,14 +49,10 @@ def sign_up():
             nuevo_usuario = User(form.email.data, generate_password_hash(form.password.data,  method='sha256'),form.name.data)
             db.session.add(nuevo_usuario)
             db.session.commit()
-<<<<<<< HEAD
             usuario = User.query.filter_by(email={form.email.data}).first()
-=======
-            usuario = User.query.filter_by(email=form.email.data).first()
->>>>>>> e0f9c0a10b1193c36d7a83d98fe2d4ee05d02f43
             login_user(usuario, remember=True)
             flash(f'Usuario creado satisfactoriamente!! {form.name.data}', 'success')
-            return redirect(url_for('auth.home'))       
+            return redirect(url_for('mis_facturas.index'))       
 
     return render_template('auth/sign-up.html', form=form, usuario = current_user)
 

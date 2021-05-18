@@ -5,8 +5,8 @@ from .forms import FielForm
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
 from flask_uploads import UploadSet, configure_uploads, DATA
-import os 
 
+cerfile = UploadSet('cerfile', ('cer',))
 
 
 @mis_facturas_bp.route('/index', methods=['POST', 'GET'])
@@ -19,7 +19,7 @@ def index():
 def upload_fiel():
     form = FielForm()
     if form.validate_on_submit():
-        cer = form.file_cer.data
-        cer.save(secure_filename(cer.filename))
+        cerfile.save(form.file_cer.data)
+        #cer.save(secure_filename(cer.filename))
 
     return render_template('descarga_facturas/upload_fiel.html',form=form, usuario=current_user)
