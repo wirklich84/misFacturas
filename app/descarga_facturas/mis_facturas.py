@@ -20,6 +20,5 @@ def upload_fiel():
     form = FielForm()
     if form.validate_on_submit():
         cerfile.save(form.file_cer.data)
-        #cer.save(secure_filename(cer.filename))
 
     return render_template('descarga_facturas/upload_fiel.html',form=form, usuario=current_user)
