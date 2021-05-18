@@ -10,6 +10,8 @@ def create_app():
     app.config['SECRET_KEY'] = 'MisTortillas'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:GrupoVictor1@192.168.2.252/db_misFacturas'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
+    app.config['UPLOAD_FOLDER'] = '/upload'
+
     db.init_app(app)
 
     from .models import User
