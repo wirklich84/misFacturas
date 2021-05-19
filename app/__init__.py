@@ -10,7 +10,7 @@ db = SQLAlchemy()
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'MisTortillas'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:GrupoVictor1@192.168.2.252/db_misFacturas'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root@127.0.0.1/db_misFacturas'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
     app.config['UPLOADED_CERFILE_DEST'] = 'uploads'
     configure_uploads(app, cerfile)
