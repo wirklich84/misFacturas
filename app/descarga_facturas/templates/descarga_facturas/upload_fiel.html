@@ -3,19 +3,6 @@
 {% block title_navbar %}FIEL{% endblock %}
 {%block content %}
 
-<style>
-    .custom-file-input.selected:lang(en)::after {
-      content: "" !important;
-    }
-
-    .custom-file {
-      overflow: hidden;
-    }
-
-    .custom-file-input {
-      white-space: nowrap;
-    }
-  </style>
 
 <div class="m-2 p-2">
  <div class="row">
@@ -28,10 +15,8 @@
                     <form method="POST" enctype="multipart/form-data" novalidate>
                         {{ form.csrf_token }}
                         
-                                {{ form.file_cer.label() }}
-                                {{ form.file_cer(class="custom-file-input") }}   </br>
-                                {{ form.file_cer() }}   </br>
-                                {{ form.file_cer() }}   </br>                
+                                <strong> {{ form.file_cer.label() }} </strong>  &nbsp;  &nbsp;
+                                {{ form.file_cer() }}   </br>             
                         
                         {{ form.submit(class="btn btn-primary")}}
                     </form>
